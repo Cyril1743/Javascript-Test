@@ -15,6 +15,7 @@ var highscore = document.querySelector("#highScores")
 var highscoreUl= document.querySelector("#highScoreList")
 var reset= document.querySelector("#reset")
 var restart = document.querySelector("#restart")
+var startMessage = document.querySelector("#startMessage")
 var count = 60
 //Varibles for the game
 var chosenAnswer = "";
@@ -88,6 +89,7 @@ function startGame() {
     answer2.setAttribute("style", "display: block")
     answer3.setAttribute("style", "display: block")
     answer4.setAttribute("style", "display: block")
+    startMessage.setAttribute("style", "display: none")
     populateQuestion()
 }
 function populateQuestion() {

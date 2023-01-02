@@ -1,0 +1,23 @@
+:root {
+    --purple: rgb(73, 0, 122);
+}
+* {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    background-color: orange;
+    font-size: 4em;
+    border-radius:30px;
+    color:purple;
+}
+title{
+    display: none;
+}
+body{
+    background-color: var(--purple);
+}
+button {
+    background-color: orange;
+}
