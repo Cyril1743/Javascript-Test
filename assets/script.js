@@ -7,6 +7,14 @@ var answer4 = document.querySelector("#answer4");
 var questionDiv = document.querySelector("#question")
 var time = document.querySelector("#timerspan")
 var answerResult = document.querySelector("#answerResult")
+var score = document.querySelector("#score")
+var finalScore = document.querySelector("#finalScore")
+var submit = document.querySelector("#submit")
+var savedname = document.querySelector("#savedname")
+var highscore = document.querySelector("#highScores")
+var highscoreUl= document.querySelector("#highScoreList")
+var reset= document.querySelector("#reset")
+var restart = document.querySelector("#restart")
 var count = 60
 //Varibles for the game
 var chosenAnswer = "";
@@ -22,6 +30,8 @@ var answers = {
     6: ["Dirty Old Man", "Date of Manufacture", "Document Object Model", "Distributed Order Management"]
 };
 var correctAnswer = ["To add functionality", "All the above", "Type and value", "Returns the remainder", "All the above", "A function", "Document Object Model"]
+var highscores = []
+var highscoreObj;
 //Event Listeners for buttons
 answer1.addEventListener("click", function () {
     chosenAnswer = answer1.textContent
@@ -39,6 +49,23 @@ answer4.addEventListener("click", function () {
     chosenAnswer = answer4.textContent
     checkAnswer()
 })
+submit.addEventListener("click", function(event){
+    highscoreObj = JSON.parse(localStorage.getItem("highscores"))
+    highscores = Object.values(highscoreObj)
+    event.preventDefault()
+    initials = savedname.value
+    highscores.push(initials + ":" + count)
+    localStorage.setItem("highscores", JSON.stringify(highscores))
+    score.setAttribute("style", "display: none")
+    getHighScores()
+})
+reset.addEventListener("click", function(){
+    localStorage.clear()
+})
+restart.addEventListener("click", function(){
+    highscore.setAttribute("style", "display: none")
+    startGame()
+})
 
 //Function to start the game
 startbutton.addEventListener("click", startGame)
@@ -49,6 +76,9 @@ function startGame() {
         count--
         time.textContent = count
         if (count <= 0) {
+            clearInterval(timer)
+            endGame()
+        } else if (questionNumber == 7) {
             clearInterval(timer)
             endGame()
         }
@@ -69,7 +99,7 @@ function populateQuestion() {
 }
 //Check to see if the answer is correct
 function checkAnswer() {
-    var answerTimerTime = 2
+    var answerTimerTime = 1
     var answerTimer = setInterval(function () {
         answerTimerTime--
         if (answerTimerTime === 0) {
@@ -81,28 +111,32 @@ function checkAnswer() {
         questionNumber++
         count = count + 20
         answerResult.textContent = "Correct!"
-        if (questionNumber === 7) {
-            endGame()
-        } else {
+        if (questionNumber != 7){
             populateQuestion()
-        }
+        } 
     } else {
         questionNumber++
         count = count - 10
         answerResult.textContent = "Wrong!"
-        if (questionNumber === 7) {
-            endGame()
-        } else {
-            populateQuestion()
-        }
     }
 }
-//Functon to end the game and record the score
+//Functon to end the game
 function endGame() {
     questionDiv.setAttribute("style", "display: none")
     answer1.setAttribute("style", "display:none")
     answer2.setAttribute("style", "display:none")
     answer3.setAttribute("style", "display:none")
     answer4.setAttribute("style", "display:none")
-    clearInterval(timer)
+    score.setAttribute("style", "display: block")
+    finalScore.textContent = count
+}
+//Function to record the scores
+function getHighScores() {
+    highscores = JSON.parse(localStorage.getItem("highscores"))
+    highscore.setAttribute("style", "display: block")
+    for (let i = 0; i < highscores.length; i++){
+        li = document.createElement("li")
+        highscoreUl.appendChild(li)
+        li.textContent = highscores[i]
+    }
 }

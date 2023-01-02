@@ -14,7 +14,7 @@
         <div>Time:</div><span id="timerspan">60</span>
     </header>
     <h1>Javascript Coding Quiz!</h1>
-    <h2>Press start to begin!</h2>
+    <h2 id="startMessage">Press start to begin!</h2>
     <button type="button" id="startbutton">Start</button>
     <div id="question"></div>
     <button type="button" id="answer1" style="display: none;"></button>
@@ -24,12 +24,18 @@
     <section>
         <div id="answerResult"></div>
     </section>
-    <section style="display: none;">
+    <section id="score" style="display: none;">
         <form>
-            <label for="name">Initials</label>
-            <input id="name" name="name">
+            <label for="savedname">Initials</label>
+            <input id="savedname" name="name">
+            <button type="submit" id="submit">Submit</button>
         </form>
-        <div>Final Score</div><span id="finalScore"></span>
+        <div style="display: inline;">Final Score: </div><span id="finalScore"></span>
+    </section>
+    <section id="highScores" style="display: none;">
+        <ul id="highScoreList"></ul>
+        <button type="button" id="reset">Reset Scores</button>
+        <button type="button" id="restart">Restart</button>
     </section>
     <script src="./assets/script.js"></script>
 </body>
