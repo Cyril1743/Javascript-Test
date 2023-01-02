@@ -11,6 +11,7 @@ h1 {
     font-size: 4em;
     border-radius:30px;
     color:purple;
+    box-shadow: 9px 15px 35px 0px black;
 }
 title{
     display: none;
@@ -19,5 +20,22 @@ body{
     background-color: var(--purple);
 }
 button {
+    background-color: var(--purple);
+    color:orange
+    
+}
+section{
     background-color: orange;
+    border-radius: 20px;
+    box-shadow: 9px 15px 35px 0px black;
+}
+div{
+    background-color: orange;
+    border-radius: 10px;
+    box-shadow: 9px 15px 35px 0px black;
+}
+span{
+    background-color: orange;
+    border-radius: 5px;
+    box-shadow: 9px 15px 35px 0px black;
 }
