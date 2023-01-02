@@ -23,19 +23,19 @@ var answers = {
 };
 var correctAnswer = ["To add functionality", "All the above", "Type and value", "Returns the remainder", "All the above", "A function", "Document Object Model"]
 //Event Listeners for buttons
-answer1.addEventListener("click", function(){
+answer1.addEventListener("click", function () {
     chosenAnswer = answer1.textContent
     checkAnswer()
 })
-answer2.addEventListener("click", function(){
+answer2.addEventListener("click", function () {
     chosenAnswer = answer2.textContent
     checkAnswer()
 })
-answer3.addEventListener("click", function (){
+answer3.addEventListener("click", function () {
     chosenAnswer = answer3.textContent
     checkAnswer()
 })
-answer4.addEventListener("click", function (){
+answer4.addEventListener("click", function () {
     chosenAnswer = answer4.textContent
     checkAnswer()
 })
@@ -70,18 +70,18 @@ function populateQuestion() {
 //Check to see if the answer is correct
 function checkAnswer() {
     var answerTimerTime = 2
-    var answerTimer = setInterval(function(){
-        answerTimerTime --
-        if (answerTimerTime === 0){
+    var answerTimer = setInterval(function () {
+        answerTimerTime--
+        if (answerTimerTime === 0) {
             clearInterval(answerTimer)
             answerResult.textContent = ""
         }
-        }, 1000)
-    if (chosenAnswer == correctAnswer[questionNumber]){
+    }, 1000)
+    if (chosenAnswer == correctAnswer[questionNumber]) {
         questionNumber++
         count = count + 20
         answerResult.textContent = "Correct!"
-        if (questionNumber === 7){
+        if (questionNumber === 7) {
             endGame()
         } else {
             populateQuestion()
@@ -90,13 +90,19 @@ function checkAnswer() {
         questionNumber++
         count = count - 10
         answerResult.textContent = "Wrong!"
-        if (questionNumber === 7){
+        if (questionNumber === 7) {
             endGame()
         } else {
             populateQuestion()
         }
     }
-    }
-
-
+}
 //Functon to end the game and record the score
+function endGame() {
+    questionDiv.setAttribute("style", "display: none")
+    answer1.setAttribute("style", "display:none")
+    answer2.setAttribute("style", "display:none")
+    answer3.setAttribute("style", "display:none")
+    answer4.setAttribute("style", "display:none")
+    clearInterval(timer)
+}
