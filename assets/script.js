@@ -6,6 +6,7 @@ var answer3 = document.querySelector("#answer3");
 var answer4 = document.querySelector("#answer4");
 var questionDiv = document.querySelector("#question")
 var time = document.querySelector("#timerspan")
+var count = 60
 //Varibles for the game
 var chosenAnswer = "";
 var questionNumber = 0;
@@ -20,7 +21,17 @@ var answers = {
     6: ["Dirty Old Man", "Date of Manufacture", "Document Object Model", "Distributed Order Management"]
 };
 var correctAnswer = ["To add functionality", "All the above", "Type and Value", "Return the remainder", "All the above", "A function", "Document Object Model"]
-
 //Function to start the game
+startbutton.addEventListener("click", startGame)
+function startGame() {
+    var timer = setInterval(function () {
+        count--
+        time.textContent = count
+        if (count === 0) {
+            clearInterval(timer)
+            endGame()
+        }
+    }, 1000)
+}
 //Check to see if the answer is correct
 //Functon to end the game and record the score
