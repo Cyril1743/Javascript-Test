@@ -8,5 +8,7 @@ I now have a tool I can use to study with and refresh my knowlegde of Javascript
 I learned how to use JSON to add arrays to localStorages. I leared how to then fetch those arrays. I learned how to use event listeners to give more functionallity to web pages
 # Description
 This is an application that runs a JavaScript test in the browser
-#Screenshot
-(!Screenshot)
+# Screenshot
+![Screenshot](assets/screenshot.png)
+# Link to Website
+https://cyril1743.github.io/javascript-test
