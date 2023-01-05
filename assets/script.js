@@ -12,8 +12,8 @@ var finalScore = document.querySelector("#finalScore")
 var submit = document.querySelector("#submit")
 var savedname = document.querySelector("#savedname")
 var highscore = document.querySelector("#highScores")
-var highscoreUl= document.querySelector("#highScoreList")
-var reset= document.querySelector("#reset")
+var highscoreUl = document.querySelector("#highScoreList")
+var reset = document.querySelector("#reset")
 var restart = document.querySelector("#restart")
 var startMessage = document.querySelector("#startMessage")
 var count = 60
@@ -50,20 +50,28 @@ answer4.addEventListener("click", function () {
     chosenAnswer = answer4.textContent
     checkAnswer()
 })
-submit.addEventListener("click", function(event){
-    highscoreObj = JSON.parse(localStorage.getItem("highscores"))
-    highscores = Object.values(highscoreObj)
+submit.addEventListener("click", function (event) {
     event.preventDefault()
-    initials = savedname.value
-    highscores.push(initials + ":" + count)
-    localStorage.setItem("highscores", JSON.stringify(highscores))
-    score.setAttribute("style", "display: none")
-    getHighScores()
+    highscoreObj = JSON.parse(localStorage.getItem("highscores"))
+    if (highscoreObj) {
+        highscores = Object.values(highscoreObj)
+        initials = savedname.value
+        highscores.push(initials + ":" + count)
+        localStorage.setItem("highscores", JSON.stringify(highscores))
+        score.setAttribute("style", "display: none")
+        getHighScores()
+    } else {
+        initials = savedname.value
+        highscores.push(initials + ":" + count)
+        localStorage.setItem("highscores", JSON.stringify(highscores))
+        score.setAttribute("style", "display: none")
+        getHighScores()
+    }
 })
-reset.addEventListener("click", function(){
+reset.addEventListener("click", function () {
     localStorage.clear()
 })
-restart.addEventListener("click", function(){
+restart.addEventListener("click", function () {
     highscore.setAttribute("style", "display: none")
     startGame()
 })
@@ -113,9 +121,9 @@ function checkAnswer() {
         questionNumber++
         count = count + 20
         answerResult.textContent = "Correct!"
-        if (questionNumber != 7){
+        if (questionNumber != 7) {
             populateQuestion()
-        } 
+        }
     } else {
         questionNumber++
         count = count - 10
@@ -136,7 +144,7 @@ function endGame() {
 function getHighScores() {
     highscores = JSON.parse(localStorage.getItem("highscores"))
     highscore.setAttribute("style", "display: block")
-    for (let i = 0; i < highscores.length; i++){
+    for (let i = 0; i < highscores.length; i++) {
         li = document.createElement("li")
         highscoreUl.appendChild(li)
         li.textContent = highscores[i]
